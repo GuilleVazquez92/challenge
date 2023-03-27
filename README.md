@@ -17,7 +17,8 @@
 * Clone the repo: git clone https://github.com/GuilleVazquez92/challenge.git
 * Once you cloned the repository, you will need to create a MySQL database
 * Setup the challenge/.env file
-* Execute the command: sh install/install.sh If you are working on localhost and your port 8000 is open the endpoint would be http://127.0.0.1:8000/api/v1/
+* cd challenge
+* Execute the command: sh install.sh If you are working on localhost and your port 8000 is open the endpoint would be http://127.0.0.1:8000/api/v1/
 
 ### Tech Documentation
 PHP 8.1.7-1ubuntu3.3 (cli) (built: Feb 22 2023 22:55:33) (NTS)
