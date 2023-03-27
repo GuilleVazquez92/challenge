@@ -4,10 +4,13 @@ namespace App\Http\Controllers\Api\V1;
 
 use App\Models\Inventory;
 use App\Models\Item;
+use App\Models\Player;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inventories\InventoryStoreRequest;
 use App\Http\Requests\UpdateRequest;
+use Illuminate\Support\Facades\Auth;
+
 use DB;
 
 class InventoriesController extends Controller
@@ -16,8 +19,10 @@ class InventoriesController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        $inventories = Inventory::all();
+    {   
+        $user_id        = Auth::id();
+        $player_id      =Player::where('user_id', $user_id)->first() ; 
+        $inventories    = Inventory::where('player_id', $player_id->id)->get();
 
         return response()->json([
             'success' => true,
