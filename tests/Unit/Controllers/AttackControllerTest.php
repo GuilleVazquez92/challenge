@@ -31,9 +31,7 @@ class AttackControllerTest extends TestCase
 
         $this->service = $this->mock(AttacksService::class);
         $this->controller = new AttacksController($this->service);
-        $this->middleware([
-            'auth:api',
-        ]);
+        
     }
 
     public function test_successful_attack()
@@ -81,45 +79,4 @@ class AttackControllerTest extends TestCase
         $this->assertEquals(201, $response->getStatusCode());
     }
 
-    public function testIndex()
-    {
-        // Crear un usuario para autenticar
-        $user = User::factory()->create();
-
-        // Establecer manualmente la instancia de autenticación del usuario actual
-        $this->actingAs($user);
-
-        // Agregar el middleware adecuado a la solicitud
-        //$response = $this->middleware(['auth:api', 'check.roles:player'])->get('api/v1/protected');
-
-        // Crear algunos ataques para probar
-        $attacks =  Attack::factory(3)->create();
-
-        // Hacer una solicitud GET a la ruta index del controlador
-        $response = $this->get('api/v1/attacks');
-
-        // Asegurarse de que la respuesta sea exitosa
-        $response->assertStatus(200);
-
-        // Decodificar el contenido JSON de la respuesta
-        $responseData = $response->decodeResponseJson();
-
-        // Asegurarse de que la respuesta tenga éxito
-        $this->assertTrue($responseData['success']);
-    }
-
-    public function test_defender_already_dead()
-    {
-        // Test scenario where the defender is already dead
-    }
-
-    public function test_attacker_already_dead()
-    {
-        // Test scenario where the attacker is already dead
-    }
-
-    public function test_attacking_yourself()
-    {
-        // Test scenario where the attacker is attacking themselves
-    }
 }

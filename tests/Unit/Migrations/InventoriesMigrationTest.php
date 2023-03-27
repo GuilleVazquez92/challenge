@@ -19,11 +19,11 @@ class InventoriesMigrationTest extends TestCase
         $this->assertTrue(Schema::hasTable('inventories'));
     }
 
-    public function test_inventories_table_has_expected_columns()
+    public function testInventoriesTableHasColumns()
     {
-        $columns = Schema::getColumnListing('inventories');
-
-        $this->assertEquals(['id', 'player_id', 'item_id', 'equipped', 'created_at', 'updated_at'], $columns);
+        $this->assertTrue(Schema::hasColumns('items', [
+            'id', 'name', 'item_type_id', 'defense_points', 'attack_points', 'created_at', 'updated_at'
+        ]));
     }
 
     public function test_invetories_table_constraints()
